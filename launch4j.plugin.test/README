@@ -1,0 +1,24 @@
+launch4j plugin will launch Test.class.
+
+Test.class simple prints a message to the log and a message to the console.
+
+-logging uses slf4j over log4j.  This is a typical setup, where log4j jars and config are added at runtime.
+
+-slf4j will log via log4j if present on classpath
+
+-if log4j is not present on classpath, it prints the following:
+SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
+s.
+
+
+Run mvn package to build the project.
+- launch4j plugin creates the test.exe
+- A maven assembly will 
+  -- place all dependent jars into the target/launch4j.plugin.test-0.0.1-SNAPSHOT-launch4j-exe/lib
+  -- place the test.exe in target/launch4j.plugin.test-0.0.1-SNAPSHOT-launch4j-exe
+  
+From the command line, run target/launch4j.plugin.test-0.0.1-SNAPSHOT-launch4j-exe/test.exe
+- if you see the above slf4j message, the log4j jars are not on the classpath.
+- if you see the message "Test log message." logged to the console, then log4j must be on the classpath
